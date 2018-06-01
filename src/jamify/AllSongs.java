@@ -28,7 +28,7 @@ public class AllSongs extends JPanel implements ActionListener {
    //initialization
     static volatile Queue<String> songQueue=new LinkedList<String>();
     static volatile Stack<String> songStack = new Stack();
-    
+
     static volatile Queue<String> songNameQueue=new LinkedList<>();
 //getters and setters
     public  Stack<String> getSongStack() {
@@ -137,7 +137,7 @@ public class AllSongs extends JPanel implements ActionListener {
 
                 int finalI = i;
                 String songPath = allSongsList.get(finalI).split(",")[2];
-                System.out.println("Meta data"+songPath);
+
 
 
                 /*onclick of the song, the song path is passed to the MP3 */
@@ -166,26 +166,22 @@ public class AllSongs extends JPanel implements ActionListener {
                     public void mouseClicked(MouseEvent e) {
                     	
                         super.mouseClicked(e);
-                        fs.fancy(songPath);
+
                         if (audioPlayObj == null) {
-                        	songNameQueue.clear();
                             songQueue.clear();  //clearing because everytime a song is clicked, the Q & stack should be deleted.
                             songStack.clear();
                             audioPlayObj = new AudioPlay();
-                            //fs.fancy(songPath);
+
                         } else {
                             audioPlayObj.mediaPlayer.stop();
                             audioPlayObj.mediaPlayer.dispose();
-                            songNameQueue.clear();
                             songQueue.clear();
                             songStack.clear();
                             audioPlayObj = new AudioPlay();
-                            //fs.fancy(songPath);
                         }
                         try {
                             audioPlayObj.setupCtrlSong(songPath);
-
-                            //fs.fancy(songPath);
+                           fs.fancy(songPath);
                             audioPlayObj.mediaPlayer.play();
                             audioPlayObj.autoNext(getSongQ(), audioPlayObj.mediaFile);
                         }
@@ -249,7 +245,7 @@ public class AllSongs extends JPanel implements ActionListener {
                             @Override
                             public void actionPerformed(ActionEvent e) {
                             	
-                                songQueue.add(songPath);
+
 //                                songNameQueue.add((allSongsList.get(finalI1).split(",")[1]));
                                 
 //                              System.out.println(songNameQueue.peek()+"---------thisssssssss");
@@ -257,9 +253,9 @@ public class AllSongs extends JPanel implements ActionListener {
 //                              printQueue(songNameQueue);
                                 printQueue(songQueue);
 //                              System.out.println(songNameQueue.peek());
-                                
+
+                                songQueue.add(songPath);
                                 setSongQ(songQueue);
-                                System.out.println("test"+songQueue.peek());
                             }
                             
                             private void printQueue(Queue songQueue) {
@@ -330,6 +326,8 @@ public class AllSongs extends JPanel implements ActionListener {
         } catch (IOException e1) {
             e1.printStackTrace();
         }
+
+        SwingUtilities.updateComponentTreeUI(MusicPlayerUI.window);
         return this;
     }
 
