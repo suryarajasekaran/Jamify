@@ -14,11 +14,11 @@ import javax.swing.*;
 
 
 public class MusicPlayerUI extends JFrame implements ActionListener{
-	public static String commonPath = "/Users/SuryaRajasekaran/Desktop/jamify_may30/src/jamify/";
+	public static String commonPath = "/Users/SuryaRajasekaran/Desktop/Jamify/src/jamify/";
 
 //	public static String songPath = "/Users/satishrambhatla/Documents/workspace/Jamify/src/jamify/Allsongs.csv";
 //	public static String tempFilePath = "/Users/satishrambhatla/Documents/workspace/Jamify/src/jamify/tempFile.txt";
-	JFrame window = new JFrame ("Something Working");
+	static JFrame window = new JFrame ("Something Working");
 	JPanel display = new JPanel();
 	static JPanel jp = new JPanel();
     static JPanel playlist = new JPanel();
@@ -173,7 +173,6 @@ public class MusicPlayerUI extends JFrame implements ActionListener{
 			}
 		}
 
-
 		MusicPlayerUI  mp = new MusicPlayerUI();
 		
 		mp.window.addWindowListener(new WindowAdapter(){
@@ -181,7 +180,6 @@ public class MusicPlayerUI extends JFrame implements ActionListener{
 				savePlaylists.save();
 			}
 		});
-
 		
 			}
 }
